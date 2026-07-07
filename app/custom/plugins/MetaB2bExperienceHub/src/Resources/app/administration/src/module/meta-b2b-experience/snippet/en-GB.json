@@ -1,0 +1,49 @@
+{
+  "meta-b2b-experience": {
+    "general": {
+      "mainMenuLabel": "B2B Content"
+    },
+    "list": {
+      "title": "B2B Content",
+      "add": "Create assignment",
+      "titleColumn": "Title",
+      "cmsPageColumn": "Experience page",
+      "ruleColumn": "Rule",
+      "priorityColumn": "Priority",
+      "positionColumn": "Position",
+      "activeColumn": "Active",
+      "customerAudienceColumn": "Customer",
+      "salesRepAudienceColumn": "Sales rep",
+      "menuItemColumn": "Menu item",
+      "contentHubColumn": "Content hub"
+    },
+    "detail": {
+      "title": "B2B content assignment",
+      "save": "Save",
+      "cancel": "Cancel",
+      "saveSuccess": "Assignment saved",
+      "errorLoad": "Could not load assignment",
+      "titleLabel": "Menu title",
+      "cmsPageLabel": "Experience page",
+      "cmsPageHelpText": "Select a shop page (type \"page\"). Category layouts do not render in the B2B platform.",
+      "ruleLabel": "Existing rule",
+      "ruleCardTitle": "Visibility rule",
+      "ruleHelpText": "Optional: define conditions or select an existing rule.",
+      "salesChannelLabel": "Sales channel (optional)",
+      "priorityLabel": "Priority",
+      "positionLabel": "Position",
+      "activeLabel": "Active",
+      "visibleForCustomerLabel": "Visible for customers/contacts",
+      "visibleForSalesRepresentativeLabel": "Visible for sales representatives",
+      "menuCardTitle": "B2B platform menu",
+      "menuHelpText": "Optional: create a dedicated menu item in addition to the content hub. The menu title is used as the label.",
+      "showInPlatformMenuLabel": "Show as dedicated menu item",
+      "includeInContentHubLabel": "Show in content hub with tabs",
+      "platformMenuParentLabel": "Menu parent (customer)",
+      "platformMenuParentHelpText": "Optional parent menu item in the B2B platform. Empty = top level.",
+      "menuIconLabel": "Menu icon",
+      "menuIconHelpText": "e.g. regular-content, regular-file-text",
+      "clearRule": "Remove rule"
+    }
+  }
+}

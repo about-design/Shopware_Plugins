@@ -1,0 +1,35 @@
+{
+  "name": "meta/b2b-experience-hub",
+  "description": "Zeigt Shopware CMS-Erlebniswelten im B2B-Platform-Menü an",
+  "version": "0.3.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "META",
+      "email": "shop@meta-online.com"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.7.0",
+    "shopware/storefront": "~6.7.0",
+    "shopware/administration": "~6.7.0",
+    "b2b-sellers/core": "^4.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Meta\\B2bExperienceHub\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Meta\\B2bExperienceHub\\MetaB2bExperienceHub",
+    "label": {
+      "de-DE": "META B2B Experience Hub",
+      "en-GB": "META B2B Experience Hub"
+    },
+    "description": {
+      "de-DE": "Verknüpft CMS-Erlebniswelten mit dem B2B-Platform-Menü per RuleBuilder",
+      "en-GB": "Links CMS experience pages to the B2B platform menu via RuleBuilder"
+    }
+  }
+}

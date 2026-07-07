@@ -1,0 +1,49 @@
+{
+  "meta-b2b-experience": {
+    "general": {
+      "mainMenuLabel": "B2B Inhalte"
+    },
+    "list": {
+      "title": "B2B Inhalte",
+      "add": "Zuweisung anlegen",
+      "titleColumn": "Titel",
+      "cmsPageColumn": "Erlebniswelt",
+      "ruleColumn": "Regel",
+      "priorityColumn": "Priorität",
+      "positionColumn": "Position",
+      "activeColumn": "Aktiv",
+      "customerAudienceColumn": "Debitor",
+      "salesRepAudienceColumn": "Vertrieb",
+      "menuItemColumn": "Menüpunkt",
+      "contentHubColumn": "Inhalte-Hub"
+    },
+    "detail": {
+      "title": "B2B Inhalte Zuweisung",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "saveSuccess": "Zuweisung gespeichert",
+      "errorLoad": "Zuweisung konnte nicht geladen werden",
+      "titleLabel": "Menütitel",
+      "cmsPageLabel": "Erlebniswelt",
+      "cmsPageHelpText": "Bitte eine Shopseite (Typ „page“) wählen. Kategorie-Layouts funktionieren in der B2B Platform nicht.",
+      "ruleLabel": "Bestehende Regel",
+      "ruleCardTitle": "Sichtbarkeitsregel",
+      "ruleHelpText": "Optional: Bedingungen definieren oder eine bestehende Regel auswählen.",
+      "salesChannelLabel": "Verkaufskanal (optional)",
+      "priorityLabel": "Priorität",
+      "positionLabel": "Position",
+      "activeLabel": "Aktiv",
+      "visibleForCustomerLabel": "Für Debitoren/Kontakte sichtbar",
+      "visibleForSalesRepresentativeLabel": "Für Vertriebsmitarbeiter sichtbar",
+      "menuCardTitle": "B2B Platform Menü",
+      "menuHelpText": "Optional: zusätzlich zum Inhalte-Hub einen eigenen Menüpunkt anlegen. Der Menütitel wird als Name verwendet.",
+      "showInPlatformMenuLabel": "Als eigener Menüpunkt anzeigen",
+      "includeInContentHubLabel": "Im Inhalte-Hub mit Tabs anzeigen",
+      "platformMenuParentLabel": "Menü-Parent (Debitor)",
+      "platformMenuParentHelpText": "Optional: Parent-Menüpunkt in der B2B Platform. Leer = oberste Ebene.",
+      "menuIconLabel": "Menü-Icon",
+      "menuIconHelpText": "z. B. regular-content, regular-file-text",
+      "clearRule": "Regel entfernen"
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{% block meta_b2b_experience_detail %}
+<sw-page class="meta-b2b-experience-detail">
+    <template #smart-bar-header>
+        <h2>{{ experience ? (experience.title || $tc('meta-b2b-experience.detail.title')) : $tc('meta-b2b-experience.detail.title') }}</h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button-process
+            :is-loading="isLoading"
+            :process-success="isSaveSuccessful"
+            :disabled="!experience || isLoading"
+            @process-finish="isSaveSuccessful = false"
+            @click="onSave"
+        >
+            {{ $tc('meta-b2b-experience.detail.save') }}
+        </sw-button-process>
+        <sw-button @click="onCancel">
+            {{ $tc('meta-b2b-experience.detail.cancel') }}
+        </sw-button>
+    </template>
+
+    <template #language-switch>
+        <sw-language-switch @on-change="loadEntity" />
+    </template>
+
+    <template #content>
+        <sw-card-view>
+            <template v-if="isLoading">
+                <sw-skeleton variant="detail-bold" />
+                <sw-skeleton />
+            </template>
+
+            <template v-else-if="experience">
+                <sw-card :title="$tc('meta-b2b-experience.detail.title')">
+                    <sw-text-field
+                        v-model:value="experience.title"
+                        :label="$tc('meta-b2b-experience.detail.titleLabel')"
+                        :error="experienceTitleError"
+                        required
+                    />
+
+                    <sw-entity-single-select
+                        v-model:value="experience.cmsPageId"
+                        entity="cms_page"
+                        :criteria="cmsPageCriteria"
+                        :label="$tc('meta-b2b-experience.detail.cmsPageLabel')"
+                        :help-text="$tc('meta-b2b-experience.detail.cmsPageHelpText')"
+                        :error="experienceCmsPageIdError"
+                        label-property="name"
+                        required
+                    />
+
+                    <sw-entity-single-select
+                        v-model:value="experience.salesChannelId"
+                        entity="sales_channel"
+                        :label="$tc('meta-b2b-experience.detail.salesChannelLabel')"
+                        label-property="name"
+                        show-clearable-button
+                    />
+
+                    <sw-number-field
+                        v-model:value="experience.priority"
+                        :label="$tc('meta-b2b-experience.detail.priorityLabel')"
+                        number-type="int"
+                    />
+
+                    <sw-number-field
+                        v-model:value="experience.position"
+                        :label="$tc('meta-b2b-experience.detail.positionLabel')"
+                        number-type="int"
+                    />
+
+                    <sw-switch-field
+                        v-model:value="experience.active"
+                        :label="$tc('meta-b2b-experience.detail.activeLabel')"
+                    />
+
+                    <sw-switch-field
+                        v-model:value="experience.visibleForCustomer"
+                        :label="$tc('meta-b2b-experience.detail.visibleForCustomerLabel')"
+                    />
+
+                    <sw-switch-field
+                        v-model:value="experience.visibleForSalesRepresentative"
+                        :label="$tc('meta-b2b-experience.detail.visibleForSalesRepresentativeLabel')"
+                    />
+                </sw-card>
+
+                <sw-card :title="$tc('meta-b2b-experience.detail.menuCardTitle')">
+                    <p class="meta-b2b-experience-detail__rule-help">
+                        {{ $tc('meta-b2b-experience.detail.menuHelpText') }}
+                    </p>
+
+                    <sw-switch-field
+                        v-model:value="experience.showInPlatformMenu"
+                        :label="$tc('meta-b2b-experience.detail.showInPlatformMenuLabel')"
+                    />
+
+                    <sw-switch-field
+                        v-model:value="experience.includeInContentHub"
+                        :label="$tc('meta-b2b-experience.detail.includeInContentHubLabel')"
+                    />
+
+                    <sw-entity-single-select
+                        v-model:value="experience.platformMenuParentId"
+                        entity="b2bsellers_platform_menu_item"
+                        :criteria="platformMenuParentCriteria"
+                        :label="$tc('meta-b2b-experience.detail.platformMenuParentLabel')"
+                        :help-text="$tc('meta-b2b-experience.detail.platformMenuParentHelpText')"
+                        label-property="technicalName"
+                        show-clearable-button
+                        :disabled="!experience.showInPlatformMenu"
+                    />
+
+                    <sw-text-field
+                        v-model:value="experience.menuIconName"
+                        :label="$tc('meta-b2b-experience.detail.menuIconLabel')"
+                        :help-text="$tc('meta-b2b-experience.detail.menuIconHelpText')"
+                        :disabled="!experience.showInPlatformMenu"
+                    />
+                </sw-card>
+
+                <sw-card :title="$tc('meta-b2b-experience.detail.ruleCardTitle')">
+                    <p class="meta-b2b-experience-detail__rule-help">
+                        {{ $tc('meta-b2b-experience.detail.ruleHelpText') }}
+                    </p>
+
+                    <sw-entity-single-select
+                        v-model:value="selectedRuleId"
+                        entity="rule"
+                        :label="$tc('meta-b2b-experience.detail.ruleLabel')"
+                        label-property="name"
+                        show-clearable-button
+                        :disabled="!!ruleConditions"
+                    />
+
+                    <sw-condition-tree
+                        v-if="!selectedRuleId"
+                        :initial-conditions="ruleConditions"
+                        :allowed-scopes="['global']"
+                        association-field="metaB2bExperiences"
+                        @conditions-changed="onConditionsChanged"
+                    />
+
+                    <sw-button
+                        v-if="selectedRuleId || ruleConditions"
+                        variant="danger"
+                        size="small"
+                        class="meta-b2b-experience-detail__clear-rule"
+                        @click="clearRule"
+                    >
+                        {{ $tc('meta-b2b-experience.detail.clearRule') }}
+                    </sw-button>
+                </sw-card>
+            </template>
+        </sw-card-view>
+    </template>
+</sw-page>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% block experience_index %}
+    <div class="platform-page container platform-page--experience-index">
+        <h1 class="platform-title">{{ getPageTitle() }}</h1>
+
+        <page-loader v-if="isLoading"></page-loader>
+
+        <div v-else-if="loadError" class="alert alert-danger">
+            {{ $trans('metaB2bExperienceHub.loadError') }}
+        </div>
+
+        <div v-else-if="!displayExperiences.length" class="alert alert-info">
+            {{ $trans('metaB2bExperienceHub.emptyState') }}
+        </div>
+
+        <template v-else>
+            <ul class="nav nav-tabs mb-4" v-if="showTabs">
+                <li class="nav-item" v-for="experience in displayExperiences" :key="experience.id">
+                    <a
+                        class="nav-link"
+                        role="tab"
+                        :class="{'active': activeExperience && activeExperience.id === experience.id}"
+                        href="#"
+                        @click.prevent="selectExperience(experience)"
+                    >
+                        {{ getExperienceTitle(experience) }}
+                    </a>
+                </li>
+            </ul>
+
+            <meta-experience-cms-page
+                v-if="activeExperience && activeCmsPageId"
+                :key="activeExperience.id"
+                :cms-page-id="activeCmsPageId"
+                :is-active="true"
+            ></meta-experience-cms-page>
+
+            <div v-else-if="activeExperience && !activeCmsPageId" class="alert alert-warning">
+                {{ $trans('metaB2bExperienceHub.missingCmsPage') }}
+            </div>
+        </template>
+    </div>
+{% endblock %}

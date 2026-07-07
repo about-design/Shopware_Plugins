@@ -1,0 +1,42 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Meta\B2bExperienceHub\:
+        resource: '../../*'
+        exclude:
+            - '../../DependencyInjection/'
+            - '../../Migration/'
+
+    Meta\B2bExperienceHub\Core\Content\Experience\ExperienceDefinition:
+        tags:
+            - { name: shopware.entity.definition }
+
+    Meta\B2bExperienceHub\Core\Content\Experience\Aggregate\ExperienceTranslation\ExperienceTranslationDefinition:
+        tags:
+            - { name: shopware.entity.definition }
+
+    Meta\B2bExperienceHub\Service\ExperiencePlatformMenuSyncService:
+        arguments:
+            $experienceRepository: '@meta_b2b_experience.repository'
+
+    Meta\B2bExperienceHub\Service\ExperienceResolver:
+        arguments:
+            $experienceRepository: '@meta_b2b_experience.repository'
+
+    Meta\B2bExperienceHub\Service\ExperienceActivityTracker:
+        arguments:
+            $activityService: '@B2bSellersCore\Components\CustomerActivity\Service\ActivityService'
+
+    Meta\B2bExperienceHub\Controller\StoreApi\ExperienceListRoute:
+        arguments:
+            $cache: '@cache.object'
+        tags: ['controller.service_arguments']
+
+    Meta\B2bExperienceHub\Controller\StoreApi\ExperienceDetailRoute:
+        tags: ['controller.service_arguments']
+
+    Meta\B2bExperienceHub\Subscriber\ExperienceCacheInvalidationSubscriber:
+        arguments:
+            $cacheInvalidator: '@Shopware\Core\Framework\Adapter\Cache\CacheInvalidator'

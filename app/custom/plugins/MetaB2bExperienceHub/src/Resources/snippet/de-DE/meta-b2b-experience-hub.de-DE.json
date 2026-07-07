@@ -1,0 +1,12 @@
+{
+  "metaB2bExperienceHub": {
+    "pageTitle": "Inhalte",
+    "emptyState": "Derzeit sind keine Inhalte für Ihren Account verfügbar.",
+    "loadError": "Die Inhalte konnten nicht geladen werden.",
+    "cmsLoadError": "Die Erlebniswelt konnte nicht geladen werden.",
+    "missingCmsPage": "Für diese Zuweisung ist keine Erlebniswelt hinterlegt.",
+    "activity": {
+      "viewed": "B2B-Inhalt angesehen: {title}"
+    }
+  }
+}

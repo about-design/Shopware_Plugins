@@ -1,0 +1,67 @@
+{% block meta_b2b_experience_list %}
+<sw-page class="meta-b2b-experience-list">
+    <template #search-bar>
+        <sw-search-bar
+            initial-search-type="meta_b2b_experience"
+            :initial-search="term"
+            @search="onSearch"
+        />
+    </template>
+
+    <template #smart-bar-header>
+        <h2>
+            {{ $tc('meta-b2b-experience.list.title') }}
+            <span v-if="!isLoading" class="sw-page__smart-bar-amount">({{ total }})</span>
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button :router-link="{ name: 'meta.b2b.experience.create' }" variant="primary">
+            {{ $tc('meta-b2b-experience.list.add') }}
+        </sw-button>
+    </template>
+
+    <template #content>
+        <sw-entity-listing
+            v-if="entitySearchable"
+            class="meta-b2b-experience-list-grid"
+            :items="experiences"
+            :columns="getColumns()"
+            :repository="experienceRepository"
+            :show-selection="false"
+            :show-settings="true"
+            :full-page="true"
+            :sort-by="sortBy"
+            :sort-direction="sortDirection"
+            :is-loading="isLoading"
+            :allow-column-edit="true"
+            :allow-edit="true"
+            :allow-delete="true"
+            identifier="meta-b2b-experience-list"
+            :disable-data-fetching="true"
+            @page-change="onPageChange"
+            @column-sort="onSortColumn"
+        >
+            <template #column-active="{ item }">
+                <sw-icon v-if="item.active" name="regular-checkmark-xs" small class="is--active"></sw-icon>
+                <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+            </template>
+        </sw-entity-listing>
+
+        <sw-empty-state
+            v-if="!isLoading && !total"
+            :title="$tc('meta-b2b-experience.list.title')"
+        >
+            <template #icon>
+                <sw-icon name="regular-content" large></sw-icon>
+            </template>
+        </sw-empty-state>
+    </template>
+
+    <template #sidebar>
+        <sw-sidebar>
+            <sw-sidebar-item icon="regular-redo" :title="$tc('global.default.refresh')" @click="onRefresh" />
+        </sw-sidebar>
+    </template>
+</sw-page>
+{% endblock %}

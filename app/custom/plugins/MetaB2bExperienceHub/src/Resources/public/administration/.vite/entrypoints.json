@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/metab2bexperiencehub/administration/",
+  "entryPoints": {
+    "meta-b2b-experience-hub": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/metab2bexperiencehub/administration/assets/meta-b2b-experience-hub-BQUQE2Iv.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

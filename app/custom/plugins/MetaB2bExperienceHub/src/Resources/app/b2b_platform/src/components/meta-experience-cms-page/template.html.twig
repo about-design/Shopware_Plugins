@@ -1,0 +1,15 @@
+{% block meta_experience_cms_page %}
+    <div class="cms-page-container meta-experience-cms-page">
+        <page-loader v-if="isLoading"></page-loader>
+
+        <div v-else-if="loadError" class="alert alert-danger">
+            {{ $trans('metaB2bExperienceHub.cmsLoadError') }}
+        </div>
+
+        <component
+            class="platform-cms"
+            v-bind:is="transformed"
+            v-if="!isLoading && cmsPage"
+        ></component>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+  "metaB2bExperienceHub": {
+    "pageTitle": "Content",
+    "emptyState": "No content is currently available for your account.",
+    "loadError": "Content could not be loaded.",
+    "cmsLoadError": "The experience page could not be loaded.",
+    "missingCmsPage": "No experience page is assigned to this mapping.",
+    "activity": {
+      "viewed": "B2B content viewed: {title}"
+    }
+  }
+}
