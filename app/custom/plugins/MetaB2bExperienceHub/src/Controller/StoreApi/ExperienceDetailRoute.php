@@ -3,6 +3,7 @@
 namespace Meta\B2bExperienceHub\Controller\StoreApi;
 
 use Meta\B2bExperienceHub\Core\Content\Experience\ExperienceDefinition;
+use Meta\B2bExperienceHub\Core\ExperiencePermissions;
 use Meta\B2bExperienceHub\Service\ExperienceActivityTracker;
 use Meta\B2bExperienceHub\Service\ExperienceResolver;
 use Meta\B2bExperienceHub\StoreApi\Response\ExperienceDetailResponse;
@@ -25,6 +26,7 @@ class ExperienceDetailRoute
         defaults: [
             '_loginRequired' => true,
             '_b2bPlatformContextRequired' => true,
+            '_b2bPlatformPermission' => [ExperiencePermissions::VIEW],
             '_entity' => 'meta_b2b_experience',
         ],
         methods: ['GET']

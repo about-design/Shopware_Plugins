@@ -97,7 +97,7 @@ class ExperiencePlatformMenuSyncService
             return;
         }
 
-        $parentId = $customParentId ?? $defaultRootId;
+        $parentId = $this->resolveValidCustomerParentId($customParentId, $defaultRootId);
         $parentMeta = $this->resolveParentMeta($parentId, $defaultRootId);
         $translations = $this->buildMenuTranslations($experience);
         $existingId = $this->connection->fetchOne(
@@ -220,6 +220,31 @@ class ExperiencePlatformMenuSyncService
                 'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
             ]));
         }
+    }
+
+    private function resolveValidCustomerParentId(?string $parentId, string $defaultRootId): string
+    {
+        if ($parentId === null || $parentId === $defaultRootId) {
+            return $defaultRootId;
+        }
+
+        /** @var array{path?: string}|false $parent */
+        $parent = $this->connection->fetchAssociative(
+            'SELECT `path` FROM `b2bsellers_platform_menu_item` WHERE `id` = :id',
+            ['id' => Uuid::fromHexToBytes($parentId)]
+        );
+
+        if ($parent === false) {
+            return $defaultRootId;
+        }
+
+        $expectedPathSegment = '|' . $defaultRootId . '|';
+
+        if (!str_contains((string) ($parent['path'] ?? ''), $expectedPathSegment)) {
+            return $defaultRootId;
+        }
+
+        return $parentId;
     }
 
     /**

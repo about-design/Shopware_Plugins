@@ -6,6 +6,7 @@
 
     <template #smart-bar-actions>
         <sw-button-process
+            v-if="canSave"
             :is-loading="isLoading"
             :process-success="isSaveSuccessful"
             :disabled="!experience || isLoading"

@@ -9,6 +9,8 @@ Shopware.Locale.extend('en-GB', enGB);
 
 const { Module } = Shopware;
 
+export const CUSTOMER_MENU_ROOT_ID = '4b8e7a2809d44e23b4e4befdd082e6ba';
+
 Module.register('meta-b2b-experience', {
     type: 'plugin',
     name: 'meta-b2b-experience',
@@ -23,6 +25,7 @@ Module.register('meta-b2b-experience', {
             path: 'list',
             meta: {
                 parentPath: 'sw.catalogue.index',
+                privilege: 'cms.viewer',
             },
         },
         detail: {
@@ -33,6 +36,7 @@ Module.register('meta-b2b-experience', {
             },
             meta: {
                 parentPath: 'meta.b2b.experience.list',
+                privilege: 'cms.editor',
             },
         },
         create: {
@@ -43,6 +47,7 @@ Module.register('meta-b2b-experience', {
             },
             meta: {
                 parentPath: 'meta.b2b.experience.list',
+                privilege: 'cms.creator',
             },
         },
     },
@@ -54,5 +59,6 @@ Module.register('meta-b2b-experience', {
         icon: 'regular-content',
         parent: 'sw-catalogue',
         position: 55,
+        privilege: 'cms.viewer',
     }],
 });

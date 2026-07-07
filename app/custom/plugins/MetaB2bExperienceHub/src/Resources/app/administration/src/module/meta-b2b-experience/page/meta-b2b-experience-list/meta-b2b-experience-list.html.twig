@@ -16,7 +16,11 @@
     </template>
 
     <template #smart-bar-actions>
-        <sw-button :router-link="{ name: 'meta.b2b.experience.create' }" variant="primary">
+        <sw-button
+            v-if="acl.can('cms.creator')"
+            :router-link="{ name: 'meta.b2b.experience.create' }"
+            variant="primary"
+        >
             {{ $tc('meta-b2b-experience.list.add') }}
         </sw-button>
     </template>
@@ -35,8 +39,8 @@
             :sort-direction="sortDirection"
             :is-loading="isLoading"
             :allow-column-edit="true"
-            :allow-edit="true"
-            :allow-delete="true"
+            :allow-edit="acl.can('cms.editor')"
+            :allow-delete="acl.can('cms.deleter')"
             identifier="meta-b2b-experience-list"
             :disable-data-fetching="true"
             @page-change="onPageChange"

@@ -1,4 +1,5 @@
 import template from './meta-b2b-experience-detail.html.twig';
+import { CUSTOMER_MENU_ROOT_ID } from '../../index';
 
 const { Component, Mixin } = Shopware;
 const { Criteria } = Shopware.Data;
@@ -12,6 +13,7 @@ Component.register('meta-b2b-experience-detail', {
     mixins: [
         Mixin.getByName('notification'),
         Mixin.getByName('placeholder'),
+        Mixin.getByName('acl'),
     ],
 
     props: {
@@ -42,6 +44,13 @@ Component.register('meta-b2b-experience-detail', {
         },
 
         ...mapPropertyErrors('experience', ['title', 'cmsPageId']),
+        canSave() {
+            if (!this.experienceId) {
+                return this.acl.can('cms.creator');
+            }
+
+            return this.acl.can('cms.editor');
+        },
         cmsPageCriteria() {
             const criteria = new Criteria();
             criteria.addFilter(Criteria.equals('type', 'page'));
@@ -52,6 +61,7 @@ Component.register('meta-b2b-experience-detail', {
         platformMenuParentCriteria() {
             const criteria = new Criteria();
             criteria.addFilter(Criteria.equals('type', 'platform'));
+            criteria.addFilter(Criteria.contains('path', `|${CUSTOMER_MENU_ROOT_ID}|`));
 
             return criteria;
         },

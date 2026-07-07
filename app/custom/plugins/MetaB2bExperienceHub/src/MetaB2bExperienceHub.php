@@ -3,6 +3,7 @@
 namespace Meta\B2bExperienceHub;
 
 use Doctrine\DBAL\Connection;
+use Meta\B2bExperienceHub\Setup\EmployeePermissionSetup;
 use Meta\B2bExperienceHub\Setup\PlatformMenuInstaller;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\ActivateContext;
@@ -19,6 +20,7 @@ class MetaB2bExperienceHub extends Plugin
         $connection = $this->container->get(Connection::class);
 
         (new PlatformMenuInstaller())->install($connection);
+        (new EmployeePermissionSetup())->install($connection);
     }
 
     public function update(UpdateContext $updateContext): void
@@ -27,6 +29,7 @@ class MetaB2bExperienceHub extends Plugin
         $connection = $this->container->get(Connection::class);
 
         (new PlatformMenuInstaller())->install($connection);
+        (new EmployeePermissionSetup())->install($connection);
     }
 
     public function activate(ActivateContext $activateContext): void
@@ -35,6 +38,32 @@ class MetaB2bExperienceHub extends Plugin
         $connection = $this->container->get(Connection::class);
 
         (new PlatformMenuInstaller())->install($connection);
+        (new EmployeePermissionSetup())->install($connection);
+    }
+
+    public function enrichPrivileges(): array
+    {
+        return [
+            'cms.viewer' => [
+                'meta_b2b_experience:read',
+                'b2bsellers_platform_menu_item:read',
+                'cms_page:read',
+                'rule:read',
+                'sales_channel:read',
+            ],
+            'cms.editor' => [
+                'meta_b2b_experience:update',
+                'rule:create',
+                'rule:update',
+            ],
+            'cms.creator' => [
+                'meta_b2b_experience:create',
+                'rule:create',
+            ],
+            'cms.deleter' => [
+                'meta_b2b_experience:delete',
+            ],
+        ];
     }
 
     public function deactivate(DeactivateContext $deactivateContext): void

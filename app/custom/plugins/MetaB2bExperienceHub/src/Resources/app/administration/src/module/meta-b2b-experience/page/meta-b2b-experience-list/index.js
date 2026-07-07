@@ -11,6 +11,7 @@ Component.register('meta-b2b-experience-list', {
     mixins: [
         Mixin.getByName('notification'),
         Mixin.getByName('listing'),
+        Mixin.getByName('acl'),
     ],
 
     data() {
